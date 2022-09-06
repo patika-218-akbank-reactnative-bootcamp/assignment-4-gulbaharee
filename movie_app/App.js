@@ -1,9 +1,6 @@
 
 import React from 'react';
-import {
-  SafeAreaView,
-
-} from 'react-native';
+import StackNavigator from './src/navigator/StackNavigator';
 
 
 
@@ -11,10 +8,7 @@ const App = () => {
   
 
   return (
-    <SafeAreaView>
-      
-    
-    </SafeAreaView>
+    <StackNavigator/>
   );
 };
 
