@@ -1,6 +1,31 @@
 {
-    "users": [
-      { "id": 1, "email": "test@gmail.com", "username": "testadmin","password": "admin1" }
-    ]
-  }
-  
+  "users": [
+    {
+      "id": 1,
+      "email": "test@gmail.com",
+      "username": "testadmin",
+      "password": "admin1"
+    },
+    {
+      "id": 2
+    },
+    {
+      "email": "deneme@gmail.çöm",
+      "username": "admin2",
+      "password": "admin2",
+      "id": 3
+    },
+    {
+      "email": "deneme@gmail.çöm",
+      "username": "admin2",
+      "password": "admin2",
+      "id": 4
+    },
+    {
+      "email": "deneme@gmail.çöm",
+      "username": "admin2",
+      "password": "admin2",
+      "id": 5
+    }
+  ]
+}
