@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react';
+import {useSelector,useDispatch} from 'react-redux';
+import {setUsers} from '../store/userSlice';
 import {
   View,
   Text,
@@ -16,8 +18,10 @@ const screen_Width = Dimensions.get('screen').width;
 
 const SignIn = () => {
   const {navigate} = useNavigation();
+  const users = useSelector((state)=>state.users.registeredUsers);
+  const dispatch = useDispatch();
 
-  const [users, setUser] = useState('');
+
 
   useEffect(() => {
     getUsers();
@@ -25,8 +29,9 @@ const SignIn = () => {
 
   const getUsers = () => {
     axios.get('http://localhost:3000/users').then(response => {
-      setUser(response.data);
+      dispatch(setUsers({users:response.data}));
     });
+    console.log(users);
   };
 
   const handleSubmit = e => {

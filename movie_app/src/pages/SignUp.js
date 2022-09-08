@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react';
+import {useSelector,useDispatch} from 'react-redux';
+import {addUsers} from '../store/userSlice';
 import {
   View,
   Text,
@@ -17,38 +19,24 @@ const screen_Width = Dimensions.get('screen').width;
 const SignUp = () => {
   const {navigate} = useNavigation();
 
-  const [users, setUser] = useState('');
-
-  
-  const postUsers = () => {
-    axios
+  const users = useSelector((state)=>state.users.registeredUsers);
+  const dispatch = useDispatch();
+ 
+  const handleSubmit = e => {
+    if (passwordCheckInput === passwordInput) {
+      axios
       .post('http://localhost:3000/users', {
         email: users.emailInput,
-        usernrame: usernameInput,
+        username: usernameInput,
         password: passwordInput,
       })
       .then(response => {
-        console.log(response.data);
+        dispatch(addUsers(response.data));
+        navigate('SignIn');
       });
-  };
-
-  const handleSubmit = e => {
-    if (passwordCheckInput === passwordInput) {
-      setUser(
-        {
-          emailInput,
-          usernameInput,
-          passwordInput,
-        },
-        [],
-      );
     }else{
         console.log('error');
     }
-    useEffect(() => {
-        postUsers();
-      }, []);
-    
   };
 
   return (
