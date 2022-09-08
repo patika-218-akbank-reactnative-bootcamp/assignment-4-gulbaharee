@@ -31,14 +31,13 @@ const SignIn = () => {
     axios.get('http://localhost:3000/users').then(response => {
       dispatch(setUsers({users:response.data}));
     });
-    console.log(users);
   };
 
   const handleSubmit = e => {
       
     const userIndex = users.findIndex(user => user.username === usernameInput);
     if (users[userIndex].password == passwordInput) {
-      console.log('login');
+      navigate('Home');
     } else {
       console.log('error');
     }
