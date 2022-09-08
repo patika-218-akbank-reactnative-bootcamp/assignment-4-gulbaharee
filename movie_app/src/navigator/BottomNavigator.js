@@ -12,7 +12,7 @@ const BottomNavigator = () => {
     <Tabs.Navigator>
       <Tabs.Screen name="MoviePage" component={MoviePage} />
       <Tabs.Screen name="Search" component={Search} />
-      <Tabs.Screen name="Setting" component={Setting} />
+      <Tabs.Screen name="Setting" component={Setting}/>
     </Tabs.Navigator>
   );
 };

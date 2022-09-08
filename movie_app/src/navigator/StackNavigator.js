@@ -5,7 +5,7 @@ import SignUp from '../pages/SignUp';
 import SignIn from '../pages/SignIn';
 import MovieDetail from '../pages/MovieDetail';
 import Theme from '../pages/Theme';
-import Setting from '../pages/Setting';
+import UserEdit from '../pages/UserEdit';
 import Home from '../pages/Home';
 
 const Stack = createNativeStackNavigator();
@@ -19,7 +19,7 @@ const StackNavigator = () => {
         <Stack.Screen name="Home" options={{headerShown:false}} component={Home} />
         <Stack.Screen name="MovieDetail" component={MovieDetail} />
         <Stack.Screen name="Theme" component={Theme} />
-        <Stack.Screen name="Setting" component={Setting} />
+        <Stack.Screen name="UserEdit" component={UserEdit} />
       </Stack.Navigator>
     </NavigationContainer>
   );
