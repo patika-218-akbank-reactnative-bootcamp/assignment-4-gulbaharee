@@ -16,7 +16,7 @@ const BottomNavigator = () => {
 
   return (
     <Tabs.Navigator>
-      <Tabs.Screen name="MoviePage" component={MoviePage} />
+      <Tabs.Screen name="MoviePage" options={{headerShown:false}} component={MoviePage} />
       <Tabs.Screen name="Search" component={Search} />
       <Tabs.Screen
         name="Setting"
