@@ -1,24 +1,33 @@
 import React from 'react';
 import {View, StyleSheet, Text, Pressable, Dimensions} from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import {setFilter} from '../store/filterSlice';
 
 const screen_Width = Dimensions.get('screen').width;
 
 const MoviesHeader = () => {
+  const filter = useSelector(state=>state.filter.chosenFilter);
+  const dispatch =useDispatch();
+  console.log(filter);
+
+  const handleFilter=(key)=>{
+    dispatch(setFilter({filter:key}));
+  }
   return (
     <View style={styles.container}>
       <View>
         <Pressable style={styles.header}>
           <View style={styles.test}>
-            <Text style={styles.buttons}>Lastest</Text>
+            <Text style={styles.buttons} onPress={()=>handleFilter('lastest')}>Lastest</Text>
           </View>
           <View style={styles.test}>
-            <Text style={styles.buttons}>Top Rated</Text>
+            <Text style={styles.buttons} onPress={()=>handleFilter('top_rated')}>Top Rated</Text>
           </View>
           <View style={styles.test}>
-            <Text style={styles.buttons}>Popular</Text>
+            <Text style={styles.buttons} onPress={()=>handleFilter('popular')}>Popular</Text>
           </View>
           <View style={styles.test}>
-            <Text style={styles.buttons}>Upcoming</Text>
+            <Text style={styles.buttons} onPress={()=>handleFilter('upcoming')}>Upcoming</Text>
           </View>
         </Pressable>
       </View>
