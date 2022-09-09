@@ -9,16 +9,18 @@ const screen_Height = Dimensions.get('screen').height;
 
 const MoviePage = () => {
   const movies = useSelector(state => state.movies.movieList);
+  const filter = useSelector(state=>state.filter.chosenFilter);
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getMovies();
+    getMovies(filter);
   }, []);
 
-  const getMovies = () => {
+  const getMovies = (key) => {
     axios
       .get(
-        'https://api.themoviedb.org/3/movie/popular?api_key=9313b113d2218d771f47c0f7fd2af4bb',
+        'https://api.themoviedb.org/3/movie/'+key+'?api_key=9313b113d2218d771f47c0f7fd2af4bb',
       )
       .then(response => {
         dispatch(setMovies({movies: response.data}));
