@@ -1,11 +1,15 @@
 import React from 'react';
 import { View,Text } from 'react-native';
+import { useSelector} from 'react-redux';
 
-const MovieDetail = ()=>{
 
+const MovieDetail = ({route})=>{
+    const {id} = route.params;
+    const movies = useSelector(state => state.movies.movieList);
+    
     return(
         <View>
-            <Text>MovieDetail</Text>
+            <Text>{id}</Text>
         </View>
     );
 }
