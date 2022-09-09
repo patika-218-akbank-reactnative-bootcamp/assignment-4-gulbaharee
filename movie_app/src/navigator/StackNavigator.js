@@ -19,7 +19,7 @@ const StackNavigator = () => {
         <Stack.Screen name="Home" options={{headerShown:false}} component={Home} />
         <Stack.Screen name="MovieDetail" options={({ route }) => ({ title: route.params.title })}component={MovieDetail} />
         <Stack.Screen name="Theme" component={Theme} />
-        <Stack.Screen name="UserEdit" component={UserEdit} />
+        <Stack.Screen options={{headerShown:false}} name="UserEdit" component={UserEdit} />
       </Stack.Navigator>
     </NavigationContainer>
   );
