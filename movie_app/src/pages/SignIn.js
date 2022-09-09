@@ -13,6 +13,8 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 
+
+
 const screen_Height = Dimensions.get('screen').height;
 const screen_Width = Dimensions.get('screen').width;
 
@@ -21,7 +23,7 @@ const SignIn = () => {
   const users = useSelector((state)=>state.users.registeredUsers);
   const dispatch = useDispatch();
 
-
+  const theme = useSelector(state => state.theme.activeTheme);
 
   useEffect(() => {
     getUsers();
@@ -44,7 +46,7 @@ const SignIn = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container,{backgroundColor:theme.backgroundColor}]}>
       <Text style={styles.headerText}>Sign In</Text>
       <View style={styles.signIn}>
         <TextInput
