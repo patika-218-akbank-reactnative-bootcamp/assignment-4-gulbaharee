@@ -41,6 +41,11 @@
       "username": "user1user",
       "password": "password1password",
       "id": 8
+    },
+    {
+      "username": "user1",
+      "password": "userpass",
+      "id": 9
     }
   ]
 }

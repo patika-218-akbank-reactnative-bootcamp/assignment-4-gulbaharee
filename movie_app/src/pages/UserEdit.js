@@ -10,11 +10,14 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
+import {useSelector} from 'react-redux';
 
 const screen_Height = Dimensions.get('screen').height;
 const screen_Width = Dimensions.get('screen').width;
 const UserEdit = () => {
   const {goBack} = useNavigation();
+
+  const loggedUser =useSelector(state=>state.loggedUser.loggedUserInfo);
 
   return (
     <View>
@@ -27,7 +30,7 @@ const UserEdit = () => {
         />
       </View>
       <View style={styles.container}>
-        <Text style={styles.headerText}>username</Text>
+        <Text style={styles.headerText}>{loggedUser.username}</Text>
         <View style={styles.signIn}>
           <TextInput
             style={styles.inputs}

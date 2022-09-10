@@ -10,7 +10,7 @@ const screen_Height = Dimensions.get('screen').height;
 const MoviePage = () => {
   const movies = useSelector(state => state.movies.movieList);
   const filter = useSelector(state=>state.filter.chosenFilter);
-  
+  const theme = useSelector(state => state.theme.activeTheme);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const MoviePage = () => {
   const getMovies = (key) => {
     axios
       .get(
-        'https://api.themoviedb.org/3/movie/'+key+'?api_key=9313b113d2218d771f47c0f7fd2af4bb',
+        'https://api.themoviedb.org/3/movie/'+key+'?api_key=9313b113d2218d771f47c0f7fd2af4bb'
       )
       .then(response => {
         dispatch(setMovies({movies: response.data}));
@@ -40,7 +40,7 @@ const MoviePage = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container,{backgroundColor:theme.backgroundColor}]}>
       <MoviesHeader />
       <FlatList data={movies.results} renderItem={renderMovies} />
     </View>

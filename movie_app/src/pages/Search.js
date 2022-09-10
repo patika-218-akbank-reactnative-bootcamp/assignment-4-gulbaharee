@@ -16,6 +16,7 @@ const screen_Width = Dimensions.get('screen').width;
 const Search = () => {
   const moviesSearch = useSelector(state => state.moviesSearch.searchList);
   const dispatch = useDispatch();
+  const theme = useSelector(state => state.theme.activeTheme);
 
   let queryKey;
   // useEffect(() => {
@@ -44,7 +45,7 @@ const Search = () => {
     );
   };
   return (
-    <View style={styles.container}>
+    <View style={[styles.container,{backgroundColor:theme.backgroundColor}]}>
       <View style={styles.header}>
         <TextInput
           style={styles.searchbar}

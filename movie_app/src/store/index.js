@@ -5,6 +5,7 @@ import {themeSlice} from './themeSlice';
 import {filterSlice} from './filterSlice';
 import { searchSlice } from './searchSlice';
 import {loginUserSlice} from './loginUserSlice';
+import {genresSlice} from './genresSlice';
 
 export const store = configureStore({
   reducer: combineReducers({
@@ -14,5 +15,6 @@ export const store = configureStore({
     filter: filterSlice.reducer,
     moviesSearch: searchSlice.reducer,
     loggedUser:loginUserSlice.reducer,
+    genres:genresSlice.reducer,
   }),
 });
