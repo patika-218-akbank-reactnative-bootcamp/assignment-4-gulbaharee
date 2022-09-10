@@ -5,13 +5,23 @@ import MoviePage from '../pages/MoviePage';
 import Search from '../pages/Search';
 import Setting from '../pages/Setting';
 import {Button} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useSelector, useDispatch} from 'react-redux';
+import {setLoginUser} from '../store/loginUserSlice';
+
 
 const Tabs = createBottomTabNavigator();
 
 const BottomNavigator = () => {
   const {navigate} = useNavigation();
-  const handleLogOut = () => {
-    navigate('SignIn');
+  const loggedUser =useSelector(state=>state.loggedUser.loggedUserInfo);
+
+  const dispatch = useDispatch();
+
+  const handleLogOut = async () => {
+    dispatch(setLoginUser({loggedUser:null}));
+    console.log(loggedUser);
+    await AsyncStorage.removeItem('loggedUser');
   };
 
   return (

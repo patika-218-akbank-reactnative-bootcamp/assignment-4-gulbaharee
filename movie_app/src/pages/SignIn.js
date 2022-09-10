@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import {useSelector,useDispatch} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {setUsers} from '../store/userSlice';
+import {setLoginUser} from '../store/loginUserSlice';
 import {
   View,
   Text,
@@ -12,15 +13,16 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
-
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const screen_Height = Dimensions.get('screen').height;
 const screen_Width = Dimensions.get('screen').width;
 
 const SignIn = () => {
   const {navigate} = useNavigation();
-  const users = useSelector((state)=>state.users.registeredUsers);
+  const users = useSelector(state => state.users.registeredUsers);
+  const loggedUser =useSelector(state=>state.loggedUser.loggedUserInfo);
+
   const dispatch = useDispatch();
 
   const theme = useSelector(state => state.theme.activeTheme);
@@ -31,22 +33,34 @@ const SignIn = () => {
 
   const getUsers = () => {
     axios.get('http://localhost:3000/users').then(response => {
-      dispatch(setUsers({users:response.data}));
+      dispatch(setUsers({users: response.data}));
     });
   };
+  const login = async (userInfo) => {
+    dispatch(setLoginUser({loggedUser:userInfo}));
+    await AsyncStorage.setItem(
+      'loggedUser',
+      JSON.stringify(
+        userInfo
+      ),
+    );
 
+  };
   const handleSubmit = e => {
-      
     const userIndex = users.findIndex(user => user.username === usernameInput);
     if (users[userIndex].password == passwordInput) {
+      login(users[userIndex]);
       navigate('Home');
+      console.log(loggedUser);
     } else {
       console.log('error');
     }
   };
 
+  
+
   return (
-    <View style={[styles.container,{backgroundColor:theme.backgroundColor}]}>
+    <View style={[styles.container, {backgroundColor: theme.backgroundColor}]}>
       <Text style={styles.headerText}>Sign In</Text>
       <View style={styles.signIn}>
         <TextInput
